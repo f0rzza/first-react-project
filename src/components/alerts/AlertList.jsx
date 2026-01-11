@@ -3,7 +3,12 @@ import Alert from './Alert';
 export default function AlertList() {
   return (
     <div className="alert-list">
-      <Alert heading="Success" type="information" closable={true}>
+      <Alert
+        heading="Success"
+        type="information"
+        closable={true}
+        onClose={() => console.log('closed')}
+      >
         Everything is really good!
       </Alert>
 
