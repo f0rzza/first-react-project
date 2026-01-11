@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 // We use directly destructuration in the parameters
-export default function Alert({ heading, children, type = 'Information' }) {
+export default function Alert({ heading, children, type = 'Information', closable }) {
   const [visible, setVisible] = useState(true);
 
   if (!visible) {
@@ -21,11 +21,13 @@ export default function Alert({ heading, children, type = 'Information' }) {
         <span>{heading}</span>
       </div>
 
-      <button aria-label="Close" onClick={handleCloseClick}>
-        <span role="img" aria-label="Close">
-          ❌
-        </span>
-      </button>
+      {closable && (
+        <button aria-label="Close" onClick={handleCloseClick}>
+          <span role="img" aria-label="Close">
+            ❌
+          </span>
+        </button>
+      )}
 
       <div>{children}</div>
     </div>

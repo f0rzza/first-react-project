@@ -3,11 +3,11 @@ import Alert from './Alert';
 export default function AlertList() {
   return (
     <div className="alert-list">
-      <Alert heading="Success" type="information">
+      <Alert heading="Success" type="information" closable={true}>
         Everything is really good!
       </Alert>
 
-      <Alert heading="Oh no!" type="warning">
+      <Alert heading="Oh no!" type="warning" closable>
         Something went wrong
       </Alert>
 
