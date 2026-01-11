@@ -1,5 +1,17 @@
+import { useState } from 'react';
+
 // We use directly destructuration in the parameters
 export default function Alert({ heading, children, type = 'Information' }) {
+  const [visible, setVisible] = useState(true);
+
+  if (!visible) {
+    return;
+  }
+
+  function handleCloseClick() {
+    setVisible(false);
+  }
+
   return (
     <div className="alert">
       <div>
@@ -9,7 +21,7 @@ export default function Alert({ heading, children, type = 'Information' }) {
         <span>{heading}</span>
       </div>
 
-      <button aria-label="Close">
+      <button aria-label="Close" onClick={handleCloseClick}>
         <span role="img" aria-label="Close">
           ❌
         </span>
