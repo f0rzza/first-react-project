@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Character } from './Character';
 
 export function CharacterList() {
   const [characters, setCharacters] = useState([]);
@@ -58,7 +59,7 @@ export function CharacterList() {
       {characters.length ? (
         <ul>
           {characters.map((c) => (
-            <li key={c.id}>{c.name}</li>
+            <Character key={c.id} name={c.name} />
           ))}
         </ul>
       ) : (
