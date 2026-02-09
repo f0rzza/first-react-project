@@ -25,7 +25,7 @@ export function CharacterList() {
         // Enable the loading mode.
         setIsLoading(true);
 
-        const response = await fetch(`https://swapi.info/api/people/${count}`);
+        const response = await fetch(`${import.meta.env.VITE_BASE_SW_API_URL}/people/${count}`);
 
         if (!response.ok) {
           setErrorMessage(`An error has occurred.`);
