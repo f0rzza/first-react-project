@@ -25,7 +25,7 @@ function App() {
       {/* Random Character */}
       <section>
         <h2>Random SW character</h2>
-        <h3>With API & Hooks: useEffect, useReducer</h3>
+        <h3>With API & Hooks: useEffect, useReducer (TypeScript)</h3>
         <RandomCharacter />
       </section>
     </>
