@@ -3,18 +3,19 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { ReactNode } from 'react';
+import React, { ReactNode } from 'react';
 
 type Props = {
   id: number;
   title: string;
   children: ReactNode;
-  defaultExpanded?: boolean;
+  expanded: number | false;
+  onChange: (event: React.SyntheticEvent, isExpanded: boolean) => void;
 };
 
-export function CustomAccordion({ id, title, children, defaultExpanded = false }: Props) {
+export function CustomAccordion({ id, title, children, expanded = false, onChange }: Props) {
   return (
-    <Accordion defaultExpanded={defaultExpanded}>
+    <Accordion expanded={expanded === id} onChange={onChange}>
       <AccordionSummary
         expandIcon={<ExpandMoreIcon />}
         aria-controls={`panel${id}-content`}
