@@ -1,8 +1,6 @@
-import { ComponentType } from 'react';
+import { ReactNode } from 'react';
 
 export type CustomAccordionType = {
   title: string;
-  h2: string;
-  h3: string;
-  component: ComponentType;
+  content: () => ReactNode;
 };

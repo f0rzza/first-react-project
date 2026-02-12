@@ -13,9 +13,7 @@ export function CustomAccordionList({ data }: Props) {
     <div>
       {data.map((item, index) => (
         <CustomAccordion id={index} key={index} title={item.title} defaultExpanded={index === 0}>
-          {item.h2 && <h2>{item.h2}</h2>}
-          {item.h3 && <h3>{item.h3}</h3>}
-          {item.component && <item.component />}
+          {item.content()}
         </CustomAccordion>
       ))}
     </div>
