@@ -9,12 +9,10 @@ type Props = {
   id: number;
   title: string;
   children: ReactNode;
-  defaultExpanded: boolean;
+  defaultExpanded?: boolean;
 };
 
-export function CustomAccordion(props: Props) {
-  const { id, title, children, defaultExpanded = false } = props;
-
+export function CustomAccordion({ id, title, children, defaultExpanded = false }: Props) {
   return (
     <Accordion defaultExpanded={defaultExpanded}>
       <AccordionSummary
