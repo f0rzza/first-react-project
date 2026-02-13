@@ -1,6 +1,7 @@
 import AlertList from '../components/alerts/AlertList';
 import { CharacterList } from '../components/characters/CharacterList';
 import { RandomCharacter } from '../components/characters/RandomCharacter';
+import { Timer } from '../components/timers/Timer';
 import { CustomAccordionType } from '../types/common';
 
 export const demoAccordions: Array<CustomAccordionType> = [
@@ -36,6 +37,19 @@ export const demoAccordions: Array<CustomAccordionType> = [
           <h2>Random SW character</h2>
           <h3>With API & Hooks: useEffect, useReducer (TypeScript)</h3>
           <RandomCharacter />
+        </>
+      );
+    },
+  },
+  {
+    title: 'Timers - With Hooks: useSate, useRef (TypeScript)',
+    content: () => {
+      return (
+        <>
+          <h2>Timers</h2>
+          <h3>With Hooks: useSate, useRef (TypeScript)</h3>
+          <Timer />
+          <Timer />
         </>
       );
     },
