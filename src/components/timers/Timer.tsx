@@ -1,7 +1,7 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { BasicButton } from '../buttons/BasicButton';
 
-export function Timer() {
+export function Timer({ allowFocus = false }: { allowFocus?: boolean }) {
   // Time in seconds.
   const [time, setTime] = useState(0);
 
@@ -10,6 +10,9 @@ export function Timer() {
 
   // If the timer is running or not.
   const [isRunning, setIsRunning] = useState(false);
+
+  // Track the last click.
+  const lastClick = useRef('');
 
   // References to timer buttons.
   const startButtonRef = useRef<HTMLButtonElement>(null);
@@ -29,6 +32,9 @@ export function Timer() {
 
       // Change the timer status.
       setIsRunning(true);
+
+      // Update last click tracking.
+      lastClick.current = 'start';
     }
   }
 
@@ -39,12 +45,29 @@ export function Timer() {
 
       // Change the timer status.
       setIsRunning(false);
+
+      // Update last click tracking.
+      lastClick.current = 'stop';
     }
   }
 
   function handleResetClick() {
     setTime(0);
+
+    // Update last click tracking.
+    lastClick.current = 'reset';
   }
+
+  useEffect(() => {
+    if (lastClick.current !== '') {
+      // Add the focus on the start or stop button.
+      const buttonWithFocus = lastClick.current === 'start' ? stopButtonRef : startButtonRef;
+      buttonWithFocus.current?.focus();
+
+      // Reset last click tracking. (to avoid conflicts with several timers)
+      lastClick.current = '';
+    }
+  }, [isRunning, time]); // Dependencies : 'isRunning' is not sufficient after 'Reset' click. (timer is already stopped)
 
   return (
     <>

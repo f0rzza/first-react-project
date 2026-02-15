@@ -42,12 +42,12 @@ export const demoAccordions: Array<CustomAccordionType> = [
     },
   },
   {
-    title: 'Timers - With Hooks: useSate, useRef (TypeScript)',
+    title: 'Timers - With Hooks: useSate, useRef, useEffect (TypeScript)',
     content: () => {
       return (
         <>
           <h2>Timers</h2>
-          <h3>With Hooks: useSate, useRef (TypeScript)</h3>
+          <h3>With Hooks: useSate, useRef, useEffect (TypeScript)</h3>
           <Timer />
           <Timer />
         </>
