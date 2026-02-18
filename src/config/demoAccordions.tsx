@@ -1,5 +1,6 @@
 import AlertList from '../components/alerts/AlertList';
 import { CharacterList } from '../components/characters/CharacterList';
+import { CharacterListWithPagination } from '../components/characters/CharacterListWithPagination';
 import { RandomCharacter } from '../components/characters/RandomCharacter';
 import { Timer } from '../components/timers/Timer';
 import { CustomAccordionType } from '../types/common';
@@ -25,6 +26,19 @@ export const demoAccordions: Array<CustomAccordionType> = [
           <h2>List of SW characters</h2>
           <h3>With API & Hooks: useState, useEffect</h3>
           <CharacterList />
+        </>
+      );
+    },
+  },
+  {
+    title:
+      'List of SW characters with pagination - With API & Hooks: useEffect, useMemo, useReducer',
+    content: () => {
+      return (
+        <>
+          <h2>List of SW characters with pagination</h2>
+          <h3>With API & Hooks: useEffect, useMemo, useReducer</h3>
+          <CharacterListWithPagination />
         </>
       );
     },
