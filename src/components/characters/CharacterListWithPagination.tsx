@@ -103,7 +103,7 @@ export function CharacterListWithPagination() {
 
       <p>{message}</p>
 
-      <p>NB : {filteredCharacters.length}</p>
+      <p>Résultats : {characters.length} personnages</p>
 
       {filteredCharacters.length && (
         <ul>
