@@ -1,8 +1,10 @@
 import { useEffect, useMemo, useReducer } from 'react';
 import { Pagination } from '../common/Pagination';
+import { CharacterType } from '../../types/common';
+import { CharacterCard } from './CharacterCard';
 
 type State = {
-  characters: Array<Object>;
+  characters: Array<CharacterType>;
   page: number;
   isLoading: boolean;
   message: string;
@@ -10,7 +12,7 @@ type State = {
 
 type Action =
   | { type: 'page'; page: number }
-  | { type: 'success'; characters: Array<Object> }
+  | { type: 'success'; characters: Array<CharacterType> }
   | { type: 'error'; message: string };
 
 function reducer(state: State, action: Action) {
@@ -35,7 +37,11 @@ function reducer(state: State, action: Action) {
 }
 
 // Get characters of the current page.
-function getFilteredCharacters(page: number, characters: Array<Object>, nbPerPage: number = 10) {
+function getFilteredCharacters(
+  page: number,
+  characters: Array<CharacterType>,
+  nbPerPage: number = 10,
+) {
   const indexMin = nbPerPage * (page - 1);
   const indexMax = indexMin + 9;
 
@@ -102,7 +108,7 @@ export function CharacterListWithPagination() {
       {filteredCharacters.length && (
         <ul>
           {filteredCharacters.map((p, index) => (
-            <li key={index}>{p.name}</li>
+            <CharacterCard key={index} name={p.name} />
           ))}
         </ul>
       )}
