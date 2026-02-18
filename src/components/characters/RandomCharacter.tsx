@@ -1,19 +1,17 @@
 import { useEffect, useReducer } from 'react';
+import { CharacterType } from '../../types/common';
 
 /** TYPES **/
-// TODO : déplacer les déclarations de types dans un dossier spécifique. Ex : /src/types/character.ts (Character, ApiCharacter), etc
-
-type Character = { name: string; gender: string };
 
 type State = {
-  character: Character | null;
+  character: CharacterType | null;
   calls: number;
   isLoading: boolean;
   errorMessage: string;
 };
 
 type Action =
-  | { type: 'update'; newCharacter: Character }
+  | { type: 'update'; newCharacter: CharacterType }
   | { type: 'reset' }
   | { type: 'error'; message: string }
   | { type: 'loading' };
@@ -45,7 +43,7 @@ function reducer(state: State, action: Action): State {
 
 // Type guard function. Note: use a mapping function instead type guard ?
 // If we need to rename API field names. Example: 'skin_color' from API will become 'skinColor' in Character type.
-function isCharacter(character: unknown): character is Character {
+function isCharacter(character: unknown): character is CharacterType {
   return typeof character === 'object' && character !== null && character.hasOwnProperty('name');
 }
 
