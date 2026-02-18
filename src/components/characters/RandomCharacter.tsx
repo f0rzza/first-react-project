@@ -1,5 +1,4 @@
 import { useEffect, useReducer } from 'react';
-import { Character } from './Character';
 
 /** TYPES **/
 // TODO : déplacer les déclarations de types dans un dossier spécifique. Ex : /src/types/character.ts (Character, ApiCharacter), etc
