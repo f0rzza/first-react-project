@@ -2,6 +2,7 @@ import AlertList from '../components/alerts/AlertList';
 import { CharacterList } from '../components/characters/CharacterList';
 import { CharacterListWithPagination } from '../components/characters/CharacterListWithPagination';
 import { RandomCharacter } from '../components/characters/RandomCharacter';
+import { OneButtonManyButtons } from '../components/counter/OneCounterManyButtons';
 import { Timer } from '../components/timers/Timer';
 import { CustomAccordionType } from '../types/common';
 
@@ -64,6 +65,18 @@ export const demoAccordions: Array<CustomAccordionType> = [
           <h3>With Hooks: useSate, useRef, useEffect (TypeScript)</h3>
           <Timer />
           <Timer />
+        </>
+      );
+    },
+  },
+  {
+    title: 'One counter, many buttons - With memo() & Hooks: useCallback, useState',
+    content: () => {
+      return (
+        <>
+          <h2>One counter, many buttons</h2>
+          <h3>With memo() & Hooks: useCallback, useState</h3>
+          <OneButtonManyButtons />
         </>
       );
     },
