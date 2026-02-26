@@ -27,7 +27,13 @@ function reducer(state: State, action: Action): State {
       return { ...state, currentPage: action.page, isLoading: true, message: '' };
 
     case 'filter':
-      return { ...state, currentPage: 1, isLoading: true, message: '', selectedFilters: [] };
+      return {
+        ...state,
+        currentPage: 1,
+        isLoading: true,
+        message: '',
+        selectedFilters: [],
+      };
 
     case 'success':
       return {
@@ -68,8 +74,12 @@ export function PostSection() {
 
   useEffect(() => {
     async function fetchData() {
-      const response = await fetch(`${import.meta.env.VITE_BASE_BLOG_API_URL}/posts`);
-      // TODO : add selected filters and current page as query parameters
+      // Generate URL parameters.
+      const params = new URLSearchParams();
+      params.append('currentPage', state.currentPage.toString());
+
+      // Add params to API URL.
+      const response = await fetch(`${import.meta.env.VITE_BASE_BLOG_API_URL}/posts?${params}`);
 
       if (!response.ok) {
         dispatch({ type: 'error', message: 'Error : pas de réponse API' });
@@ -85,7 +95,7 @@ export function PostSection() {
     }
 
     fetchData();
-  }, []);
+  }, [state.currentPage]);
 
   const { data, currentPage, totalPages, isLoading, message, selectedFilters } = state;
 
@@ -107,7 +117,7 @@ export function PostSection() {
             <Pagination
               currentPage={currentPage}
               totalPages={totalPages}
-              onPageChange={(page) => console.log('click', page)}
+              onPageChange={(page) => dispatch({ type: 'page', page })}
             />
           </div>
         )}
