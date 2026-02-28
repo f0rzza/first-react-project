@@ -8,15 +8,11 @@ export function PostList({ data }: { data: Array<unknown> }) {
   return (
     <div>
       <h2>Posts</h2>
-      {data?.length > 0 ? (
-        <ul>
-          {data.map((post) => (
-            <article key={post.id}>{post.title}</article>
-          ))}
-        </ul>
-      ) : (
-        <p>No posts</p>
-      )}
+      <ul>
+        {data.map((post) => (
+          <article key={post.id}>{post.title}</article>
+        ))}
+      </ul>
     </div>
   );
 }

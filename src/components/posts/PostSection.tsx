@@ -137,11 +137,13 @@ export function PostSection() {
       <div className="list">
         {nbSelectFilters > 0 && <p>Selected filters: ...</p>}
 
-        <p>
-          {currentPage} / {totalPages}
-        </p>
+        {currentPage <= totalPages && (
+          <p>
+            {currentPage} / {totalPages}
+          </p>
+        )}
 
-        {data.length > 0 && (
+        {data.length > 0 ? (
           <div>
             <PostList data={data} />
             <Pagination
@@ -150,6 +152,8 @@ export function PostSection() {
               onPageChange={(page) => dispatch({ type: 'page', page })}
             />
           </div>
+        ) : (
+          <p>No posts</p>
         )}
 
         {isLoading && <p>Loading...</p>}
