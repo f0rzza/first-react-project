@@ -90,9 +90,12 @@ export function PostSection() {
 
   useEffect(() => {
     async function fetchData() {
+      const nbPostsPerPage = import.meta.env.VITE_NB_POSTS_PER_PAGE ?? 10;
+
       // Generate URL parameters.
       const params = new URLSearchParams();
       params.append('page', state.currentPage.toString());
+      params.append('limit', nbPostsPerPage.toString());
 
       const { categories, authors } = state.selectedFilters;
       params.append('categories', categories.join(','));
@@ -107,8 +110,6 @@ export function PostSection() {
       }
 
       const result = await response.json();
-
-      const nbPostsPerPage = import.meta.env.VITE_NB_POSTS_PER_PAGE ?? 10;
       const totalPages = Math.ceil(result.total / nbPostsPerPage);
 
       dispatch({ type: 'success', data: result.posts, totalPages: totalPages });
