@@ -3,10 +3,24 @@ import { CharacterList } from '../components/characters/CharacterList';
 import { CharacterListWithPagination } from '../components/characters/CharacterListWithPagination';
 import { RandomCharacter } from '../components/characters/RandomCharacter';
 import { OneButtonManyButtons } from '../components/counter/OneCounterManyButtons';
+import { PostSection } from '../components/posts/PostSection';
 import { Timer } from '../components/timers/Timer';
 import { CustomAccordionType } from '../types/common';
 
 export const demoAccordions: Array<CustomAccordionType> = [
+  {
+    title:
+      'List of Posts with filters and pagination - With API & Hooks: useEffect, useReducer, useState',
+    content: () => {
+      return (
+        <>
+          <h2>List of Posts with filters and pagination</h2>
+          <h3>With API & Hooks: useEffect, useReducer, useState</h3>
+          <PostSection />
+        </>
+      );
+    },
+  },
   {
     title: 'List of Alert components - With Hook: useState',
     content: () => {
