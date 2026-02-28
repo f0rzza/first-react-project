@@ -30,7 +30,7 @@ export function AuthorFilter() {
         {authors.map((author) => (
           <li key={author.id}>
             <label>
-              <input type="checkbox" name="authorIds" value={author.id} />
+              <input type="checkbox" name="authors" value={author.id} />
               {author.username}
             </label>
           </li>

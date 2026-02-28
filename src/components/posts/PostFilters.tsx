@@ -1,11 +1,23 @@
+import { FormEvent } from 'react';
 import { AuthorFilter } from './filters/AuthorFilter';
 import { CategoryFilter } from './filters/CategoryFilter';
 
-export function PostFilters() {
+type Props = { onFilterChange: (filterName: string) => void };
+
+export function PostFilters({ onFilterChange }: Props) {
+  // Only one handler for all buttons.
+  function handleClick(e: FormEvent) {
+    const target = e.target as HTMLInputElement;
+    const { name } = target;
+    onFilterChange(name);
+  }
+
   return (
     <div>
-      <AuthorFilter />
-      <CategoryFilter />
+      <form onChange={handleClick}>
+        <AuthorFilter />
+        <CategoryFilter />
+      </form>
     </div>
   );
 }
