@@ -17,6 +17,7 @@ export function LogoutButton({ onClick }: Props) {
       // Call API request
       const response = await fetch(`${import.meta.env.VITE_BASE_BLOG_API_URL}/auth/logout`, {
         method: 'POST',
+        credentials: 'include',
       });
 
       if (!response.ok) {
