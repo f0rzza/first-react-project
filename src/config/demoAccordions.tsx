@@ -1,4 +1,5 @@
 import AlertList from '../components/alerts/AlertList';
+import { Login } from '../components/auth/Login';
 import { CharacterList } from '../components/characters/CharacterList';
 import { CharacterListWithPagination } from '../components/characters/CharacterListWithPagination';
 import { RandomCharacter } from '../components/characters/RandomCharacter';
@@ -8,6 +9,18 @@ import { Timer } from '../components/timers/Timer';
 import { CustomAccordionType } from '../types/common';
 
 export const demoAccordions: Array<CustomAccordionType> = [
+  {
+    title: 'Authentication - With API & Hooks: useEffect, useState',
+    content: () => {
+      return (
+        <>
+          <h2>Authentication</h2>
+          <h3>With API & Hooks: useEffect, useState</h3>
+          <Login />
+        </>
+      );
+    },
+  },
   {
     title:
       'List of Posts with filters and pagination - With API & Hooks: useEffect, useReducer, useState',
