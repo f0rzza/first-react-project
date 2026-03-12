@@ -23,7 +23,7 @@ export function AuthProvider({ children }: Props) {
 
     if (!response.ok) {
       setIsLoading(false);
-      return;
+      return false;
     }
 
     // Read the body of the response
@@ -32,9 +32,11 @@ export function AuthProvider({ children }: Props) {
     if (data.success) {
       setUser(data.user);
       setIsAuth(true);
+      return true;
     }
 
     setIsLoading(false);
+    return false;
   };
 
   const logout = async () => {

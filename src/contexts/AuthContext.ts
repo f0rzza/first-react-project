@@ -5,7 +5,7 @@ export const AuthContext = createContext<AuthStateType>({
   user: undefined,
   isAuth: false,
   loading: false,
-  login: (identifier: string, password: string) => {},
-  logout: () => {},
-  checkAuthentication: () => {},
+  login: () => new Promise<boolean>((identifier, password) => false),
+  logout: () => new Promise<void>(() => {}),
+  checkAuthentication: () => new Promise<void>(() => {}),
 });

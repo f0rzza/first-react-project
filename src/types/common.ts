@@ -20,7 +20,7 @@ export type AuthStateType = {
   user: UserType;
   isAuth: boolean;
   loading: boolean;
-  login: (identifier: string, password: string) => void;
-  logout: () => void;
-  checkAuthentication: () => void;
+  login: (identifier: string, password: string) => Promise<boolean>;
+  logout: () => Promise<void>;
+  checkAuthentication: () => Promise<void>;
 };
