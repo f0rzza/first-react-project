@@ -19,7 +19,8 @@ export type UserType = { username: string; email: string } | undefined;
 export type AuthStateType = {
   user: UserType;
   isAuth: boolean;
-  login: () => void;
+  loading: boolean;
+  login: (identifier: string, password: string) => void;
   logout: () => void;
   checkAuthentication: () => void;
 };

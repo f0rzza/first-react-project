@@ -4,7 +4,8 @@ import { AuthStateType } from '../types/common';
 export const AuthContext = createContext<AuthStateType>({
   user: undefined,
   isAuth: false,
-  login: () => {},
+  loading: false,
+  login: (identifier: string, password: string) => {},
   logout: () => {},
   checkAuthentication: () => {},
 });
