@@ -20,7 +20,7 @@ export function Login() {
     } catch (error) {
       console.log(error);
     }
-  }, []);
+  }, [isAuth]);
 
   return (
     <div>

@@ -5,7 +5,7 @@ type Props = { children: ReactNode };
 
 export function AuthProvider({ children }: Props) {
   const [user, setUser] = useState(undefined);
-  const [isAuth, setIsAuth] = useState(false);
+  const isAuth = !!user; // Derived state.
   const [loading, setIsLoading] = useState(false);
 
   const login = async (identifier: string, password: string) => {
@@ -31,7 +31,6 @@ export function AuthProvider({ children }: Props) {
 
     if (data.success) {
       setUser(data.user);
-      setIsAuth(true);
       return true;
     }
 
@@ -58,7 +57,6 @@ export function AuthProvider({ children }: Props) {
 
     if (data.success) {
       setUser(undefined);
-      setIsAuth(false);
     }
 
     setIsLoading(false);
@@ -82,7 +80,6 @@ export function AuthProvider({ children }: Props) {
 
     if (data.success) {
       setUser(data.user);
-      setIsAuth(true);
     }
 
     setIsLoading(false);
