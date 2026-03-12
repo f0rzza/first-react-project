@@ -16,8 +16,13 @@ export function LoginForm() {
     event.preventDefault();
 
     try {
-      login(user.identifier, user.password);
-      setError(``);
+      const success = await login(user.identifier, user.password);
+
+      if (!success) {
+        setError(`Invalid credentials.`);
+      } else {
+        setError(``);
+      }
     } catch (error) {
       console.log('ERROR', error);
       setError(`An error has occured.`);

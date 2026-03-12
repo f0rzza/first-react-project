@@ -81,6 +81,7 @@ export function AuthProvider({ children }: Props) {
     const data = await response.json();
 
     if (data.success) {
+      setUser(data.user);
       setIsAuth(true);
     }
 
