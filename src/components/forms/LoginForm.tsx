@@ -1,11 +1,10 @@
-import { ChangeEvent, MouseEvent, useState } from 'react';
+import { ChangeEvent, MouseEvent, use, useState } from 'react';
+import { AuthContext } from '../../contexts/AuthContext';
 
-type Props = { onSubmit?: () => void };
-
-export function LoginForm({ onSubmit }: Props) {
+export function LoginForm() {
   const [user, setUser] = useState({ identifier: '', password: '' });
   const [error, setError] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
+  const { loading, login } = use(AuthContext);
 
   function handleChange(e: ChangeEvent) {
     const target = e.target as HTMLInputElement;
@@ -16,36 +15,17 @@ export function LoginForm({ onSubmit }: Props) {
   async function handleSubmit(event: MouseEvent) {
     event.preventDefault();
 
-    setIsLoading(true);
-
     try {
-      // Call API request
-      const response = await fetch(`${import.meta.env.VITE_BASE_BLOG_API_URL}/auth/login`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ identifier: user.identifier, password: user.password }),
-        credentials: 'include',
-      });
+      const success = await login(user.identifier, user.password);
 
-      // Read the body of the response
-      const data = await response.json();
-
-      if (!response.ok) {
-        setError(data.message || `Une erreur s'est produite.`);
-        setIsLoading(false);
-        return;
+      if (!success) {
+        setError(`Invalid credentials.`);
+      } else {
+        setError(``);
       }
-
-      setError('OK');
-      setIsLoading(false);
-
-      if (onSubmit) onSubmit();
     } catch (error) {
       console.log('ERROR', error);
-      setError(`Une erreur s'est produite. (2)`);
-      setIsLoading(false);
+      setError(`An error has occured.`);
     }
   }
 
@@ -67,8 +47,8 @@ export function LoginForm({ onSubmit }: Props) {
         onChange={handleChange}
       />
 
-      <button onClick={handleSubmit} disabled={isLoading}>
-        {isLoading ? 'Connecting...' : 'Log in'}
+      <button onClick={handleSubmit} disabled={loading}>
+        {loading ? 'Connecting...' : 'Log in'}
       </button>
 
       {error && <p>{error}</p>}

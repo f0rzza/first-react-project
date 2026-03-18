@@ -13,3 +13,14 @@ export type PostType = {
   createdAt: Date | undefined;
   updatedAt: Date | undefined;
 };
+
+export type UserType = { username: string; email: string } | undefined;
+
+export type AuthStateType = {
+  user: UserType;
+  isAuth: boolean;
+  loading: boolean;
+  login: (identifier: string, password: string) => Promise<boolean>;
+  logout: () => Promise<void>;
+  checkAuthentication: () => Promise<void>;
+};

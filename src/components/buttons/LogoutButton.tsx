@@ -1,12 +1,10 @@
-import { useState } from 'react';
+import { use, useState } from 'react';
+import { AuthContext } from '../../contexts/AuthContext';
 
-type Props = {
-  onClick: () => void;
-};
-
-export function LogoutButton({ onClick }: Props) {
+export function LogoutButton() {
   // TODO : use MUI button
   const [isEnabled, setIsEnabled] = useState(true);
+  const { logout } = use(AuthContext);
 
   async function handleClick() {
     if (!isEnabled) return;
@@ -14,22 +12,7 @@ export function LogoutButton({ onClick }: Props) {
     setIsEnabled(false);
 
     try {
-      // Call API request
-      const response = await fetch(`${import.meta.env.VITE_BASE_BLOG_API_URL}/auth/logout`, {
-        method: 'POST',
-        credentials: 'include',
-      });
-
-      if (!response.ok) {
-        return;
-      }
-
-      // Read the body of the response
-      const data = await response.json();
-
-      if (data.success) {
-        onClick();
-      }
+      logout();
     } catch (error) {
       console.log('ERROR', error);
     } finally {
