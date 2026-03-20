@@ -1,4 +1,4 @@
-import { ChangeEvent, useEffect, useState } from 'react';
+import { ChangeEvent, MouseEvent, useEffect, useState } from 'react';
 import { PostType } from '../../types/common';
 
 type Props = {
@@ -9,6 +9,8 @@ export function PostForm({ postId }: Props) {
   const [formData, setFormData] = useState<PostType>({
     title: '',
     content: '',
+    isPublished: false, // TODO
+    authorId: 1, // TODO
   });
 
   useEffect(() => {
@@ -35,6 +37,28 @@ export function PostForm({ postId }: Props) {
     setFormData({ ...formData, [name]: value });
   }
 
+  async function handleSubmit(e: MouseEvent) {
+    e.preventDefault();
+
+    // Call API request : post creation or update.
+    const apiSuffix = postId ? `/${postId}` : ``;
+    const response = await fetch(`${import.meta.env.VITE_BASE_BLOG_API_URL}/posts${apiSuffix}`, {
+      method: postId ? 'PUT' : 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData),
+    });
+
+    if (!response.ok) {
+      console.log('api error');
+      return;
+    }
+
+    const result = await response.json();
+    console.log('api success', result);
+  }
+
   return (
     <form>
       <div>
@@ -53,6 +77,9 @@ export function PostForm({ postId }: Props) {
           value={formData.content}
           onChange={handleChange}
         />
+      </div>
+      <div>
+        <button onClick={handleSubmit}>Valider</button>
       </div>
     </form>
   );
