@@ -1,10 +1,12 @@
-import { use, useEffect, useState } from 'react';
+import { ChangeEvent, use, useEffect, useState } from 'react';
 import { UserType } from '../../../types/common';
 import { AuthContext } from '../../../contexts/AuthContext';
 
-export function AuthorField() {
+type Props = { selectedValue: number | string; onAuthorChange: (e: ChangeEvent) => void };
+
+export function AuthorField({ selectedValue, onAuthorChange }: Props) {
   const [authors, setAuthors] = useState<Array<UserType>>([]);
-  const { user, isAuth } = use(AuthContext);
+  const { user } = use(AuthContext);
 
   // Get list of users after component is mounted.
   useEffect(() => {
@@ -16,30 +18,20 @@ export function AuthorField() {
       }
 
       const results = await response.json();
-
-      // Exclude authenticated user if necessary.
-      const authors = isAuth
-        ? results.filter((author: UserType) => author.id !== user?.id)
-        : results;
-
-      setAuthors(authors);
+      setAuthors(results);
     }
 
     fetchData();
-  }, [user]);
+  }, []);
 
   return (
     <div>
       <label htmlFor="authorId">Author</label>
-      <select value={isAuth ? user?.id : ''} onChange={() => console.log('select on change')}>
-        {/* Default selected option when not authenticated */}
+      <select name="authorId" value={selectedValue} onChange={onAuthorChange}>
         <option value="">Select an author</option>
-        {/* Default selected option when authenticated */}
-        {isAuth && <option value={user?.id}>Me ({user?.username})</option>}
-        {/* Other users */}
         {authors.map((author) => (
           <option key={author.id} value={author.id}>
-            {author.username}
+            {author.username} {author.id === user?.id ? '(me)' : ''}
           </option>
         ))}
       </select>
