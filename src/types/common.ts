@@ -10,8 +10,8 @@ export type CharacterType = { name: string; gender: string };
 export type PostType = {
   title: string;
   content: string;
-  createdAt: Date | undefined;
-  updatedAt: Date | undefined;
+  createdAt?: Date;
+  updatedAt?: Date;
 };
 
 export type UserType = { username: string; email: string } | undefined;
