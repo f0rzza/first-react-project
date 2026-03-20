@@ -1,5 +1,6 @@
 import { ChangeEvent, MouseEvent, useEffect, useState } from 'react';
 import { PostType } from '../../types/common';
+import { AuthorField } from './fields/AuthorField';
 
 type Props = {
   postId: string | undefined;
@@ -10,7 +11,7 @@ export function PostForm({ postId }: Props) {
     title: '',
     content: '',
     published: false,
-    authorId: 1, // TODO
+    authorId: 0,
   });
 
   useEffect(() => {
@@ -88,6 +89,7 @@ export function PostForm({ postId }: Props) {
           onChange={handleChange}
         />
       </div>
+      <AuthorField />
       <div>
         <button onClick={handleSubmit}>Valider</button>
       </div>
