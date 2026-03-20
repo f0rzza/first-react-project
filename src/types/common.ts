@@ -10,7 +10,7 @@ export type CharacterType = { name: string; gender: string };
 export type PostType = {
   title: string;
   content: string;
-  isPublished: boolean;
+  published: boolean;
   authorId: number;
   createdAt?: Date;
   updatedAt?: Date;

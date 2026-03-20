@@ -9,7 +9,7 @@ export function PostForm({ postId }: Props) {
   const [formData, setFormData] = useState<PostType>({
     title: '',
     content: '',
-    isPublished: false, // TODO
+    published: false,
     authorId: 1, // TODO
   });
 
@@ -33,8 +33,9 @@ export function PostForm({ postId }: Props) {
 
   function handleChange(e: ChangeEvent) {
     const target = e.target as HTMLInputElement | HTMLTextAreaElement;
-    const { name, value } = target;
-    setFormData({ ...formData, [name]: value });
+    // Get correct 'value', if the current input is a checkbox or not.
+    const value = 'checked' in target ? target.checked : target.value;
+    setFormData({ ...formData, [target.name]: value });
   }
 
   async function handleSubmit(e: MouseEvent) {
@@ -75,6 +76,15 @@ export function PostForm({ postId }: Props) {
           name="content"
           placeholder="Content"
           value={formData.content}
+          onChange={handleChange}
+        />
+      </div>
+      <div>
+        <label htmlFor="published">Is published ?</label>
+        <input
+          type="checkbox"
+          name="published"
+          checked={formData.published}
           onChange={handleChange}
         />
       </div>
