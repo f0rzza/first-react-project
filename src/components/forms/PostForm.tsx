@@ -1,6 +1,7 @@
-import { ChangeEvent, MouseEvent, useEffect, useState } from 'react';
+import { ChangeEvent, MouseEvent, use, useEffect, useState } from 'react';
 import { PostType } from '../../types/common';
 import { AuthorField } from './fields/AuthorField';
+import { AuthContext } from '../../contexts/AuthContext';
 
 type Props = {
   postId: string | undefined;
@@ -11,9 +12,12 @@ export function PostForm({ postId }: Props) {
     title: '',
     content: '',
     published: false,
-    authorId: 0,
+    authorId: '',
   });
 
+  const { user } = use(AuthContext);
+
+  // Get post data from ID after form component is mounted.
   useEffect(() => {
     if (postId) {
       async function fetchData(id: string) {
@@ -32,11 +36,19 @@ export function PostForm({ postId }: Props) {
     }
   }, [postId]);
 
+  // Assign automatically the authenticated user.
+  useEffect(() => {
+    if (!postId && user?.id) {
+      setFormData({ ...formData, authorId: user.id });
+    }
+  }, [user, postId]);
+
   function handleChange(e: ChangeEvent) {
-    const target = e.target as HTMLInputElement | HTMLTextAreaElement;
+    const target = e.target as HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement;
+    const { name, type } = target;
     // Get correct 'value', if the current input is a checkbox or not.
-    const value = 'checked' in target ? target.checked : target.value;
-    setFormData({ ...formData, [target.name]: value });
+    const value = type === 'checkbox' && 'checked' in target ? target.checked : target.value;
+    setFormData({ ...formData, [name]: value });
   }
 
   async function handleSubmit(e: MouseEvent) {
@@ -89,7 +101,7 @@ export function PostForm({ postId }: Props) {
           onChange={handleChange}
         />
       </div>
-      <AuthorField />
+      <AuthorField selectedValue={formData.authorId} onAuthorChange={handleChange} />
       <div>
         <button onClick={handleSubmit}>Valider</button>
       </div>

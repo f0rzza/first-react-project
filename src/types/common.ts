@@ -11,15 +11,15 @@ export type PostType = {
   title: string;
   content: string;
   published: boolean;
-  authorId: number;
+  authorId: number | '';
   createdAt?: Date;
   updatedAt?: Date;
 };
 
-export type UserType = { username: string; email: string } | undefined;
+export type UserType = { id?: number; username: string; email: string };
 
 export type AuthStateType = {
-  user: UserType;
+  user: UserType | undefined;
   isAuth: boolean;
   loading: boolean;
   login: (identifier: string, password: string) => Promise<boolean>;
