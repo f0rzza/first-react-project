@@ -10,14 +10,16 @@ export type CharacterType = { name: string; gender: string };
 export type PostType = {
   title: string;
   content: string;
-  createdAt: Date | undefined;
-  updatedAt: Date | undefined;
+  published: boolean;
+  authorId: number | '';
+  createdAt?: Date;
+  updatedAt?: Date;
 };
 
-export type UserType = { username: string; email: string } | undefined;
+export type UserType = { id?: number; username: string; email: string };
 
 export type AuthStateType = {
-  user: UserType;
+  user: UserType | undefined;
   isAuth: boolean;
   loading: boolean;
   login: (identifier: string, password: string) => Promise<boolean>;
