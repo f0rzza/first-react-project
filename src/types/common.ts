@@ -16,6 +16,11 @@ export type PostType = {
   updatedAt?: Date;
 };
 
+export type CategoryType = {
+  id?: number;
+  name: string;
+};
+
 export type UserType = { id?: number; username: string; email: string };
 
 export type AuthStateType = {

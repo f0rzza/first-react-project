@@ -1,0 +1,13 @@
+import { CategoryType } from '../types/common';
+
+// Get category from ID.
+export async function fetchCategory(id: string): Promise<CategoryType | null> {
+  const response = await fetch(`${import.meta.env.VITE_BASE_BLOG_API_URL}/categories/${id}`);
+
+  if (!response.ok) {
+    return null;
+  }
+
+  const result = await response.json();
+  return result;
+}
