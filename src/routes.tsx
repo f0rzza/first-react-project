@@ -6,6 +6,7 @@ import { PostFormPage } from './pages/PostFormPage.js';
 import { CategoriesPage } from './pages/CategoriesPage.js';
 import { CategoryDetailsPage } from './pages/CategoryDetailsPage.js';
 import { fetchCategory } from './utils/api.js';
+import { ErrorPage } from './pages/ErrorPage.js';
 
 const homeRoute = { path: '/', Component: HomePage };
 
@@ -39,7 +40,7 @@ const categoryRoutes = {
         let category = await fetchCategory(params.id);
 
         if (!category) {
-          throw redirect('/');
+          throw redirect('/error/404');
         }
 
         return category;
@@ -48,4 +49,9 @@ const categoryRoutes = {
   ],
 };
 
-export const router = createBrowserRouter([homeRoute, postRoutes, categoryRoutes]);
+const commonRoutes = [
+  // Errors
+  { path: '/error/:code', Component: ErrorPage },
+];
+
+export const router = createBrowserRouter([homeRoute, postRoutes, categoryRoutes, ...commonRoutes]);
