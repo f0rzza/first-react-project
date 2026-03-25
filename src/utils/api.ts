@@ -5,7 +5,7 @@ export async function fetchCategory(id: string): Promise<CategoryType | null> {
   const response = await fetch(`${import.meta.env.VITE_BASE_BLOG_API_URL}/categories/${id}`);
 
   if (!response.ok) {
-    return null;
+    throw new Response('Not Found', { status: 404 });
   }
 
   const result = await response.json();

@@ -1,4 +1,4 @@
-import { createBrowserRouter, redirect } from 'react-router-dom';
+import { createBrowserRouter } from 'react-router-dom';
 import { HomePage } from './pages/HomePage.js';
 import { PostsPage } from './pages/PostsPage.js';
 import { PostDetailsPage } from './pages/PostDetailsPage.js';
@@ -7,6 +7,7 @@ import { CategoriesPage } from './pages/CategoriesPage.js';
 import { CategoryDetailsPage } from './pages/CategoryDetailsPage.js';
 import { fetchCategory } from './utils/api.js';
 import { ErrorPage } from './pages/ErrorPage.js';
+import { AppError } from './components/errors/AppError.js';
 
 const homeRoute = { path: '/', Component: HomePage };
 
@@ -38,19 +39,15 @@ const categoryRoutes = {
       // Note : use destructuring to get the params. Then, use loader to fetch category data here.
       loader: async ({ params }: { params: { id: string } }) => {
         let category = await fetchCategory(params.id);
-
-        if (!category) {
-          throw redirect('/error/404');
-        }
-
         return category;
       },
+      errorElement: <AppError />,
     },
   ],
 };
 
 const commonRoutes = [
-  // Errors
+  // Errors. Keep this route if we want redirect on a specific page.
   { path: '/error/:code', Component: ErrorPage },
 ];
 
