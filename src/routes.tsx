@@ -1,10 +1,10 @@
 import { createBrowserRouter } from 'react-router-dom';
 import { HomePage } from './pages/HomePage.js';
-import { PostsPage } from './pages/PostsPage.js';
-import { PostDetailsPage } from './pages/PostDetailsPage.js';
-import { PostFormPage } from './pages/PostFormPage.js';
-import { CategoriesPage } from './pages/CategoriesPage.js';
-import { CategoryDetailsPage } from './pages/CategoryDetailsPage.js';
+import { PostsPage } from './pages/posts/PostsPage.js';
+import { PostDetailsPage } from './pages/posts/PostDetailsPage.js';
+import { PostFormPage } from './pages/posts/PostFormPage.js';
+import { CategoriesPage } from './pages/categories/CategoriesPage.js';
+import { CategoryDetailsPage } from './pages/categories/CategoryDetailsPage.js';
 import { fetchCategory } from './utils/api.js';
 import { ErrorPage } from './pages/ErrorPage.js';
 import { AppError } from './components/errors/AppError.js';
