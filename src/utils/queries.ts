@@ -6,4 +6,5 @@ import { fetchUser } from './api';
 export const userDetailsQuery = (id: string) => ({
   queryKey: ['user', id],
   queryFn: () => fetchUser(id),
+  staleTime: 1000 * 60, // 1 min
 });
