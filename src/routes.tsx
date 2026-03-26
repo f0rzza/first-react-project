@@ -12,8 +12,7 @@ import { UsersPage } from './pages/users/UsersPage.js';
 import { UserDetailsPage } from './pages/users/UserDetailsPage.js';
 import { QueryClient } from '@tanstack/react-query';
 import { userDetailsLoader } from './utils/loaders.js';
-
-const queryClient = new QueryClient();
+import { queryClient } from './utils/queryClient.js';
 
 const homeRoute = { path: '/', Component: HomePage };
 
