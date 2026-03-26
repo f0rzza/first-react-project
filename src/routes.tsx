@@ -5,11 +5,15 @@ import { PostDetailsPage } from './pages/posts/PostDetailsPage.js';
 import { PostFormPage } from './pages/posts/PostFormPage.js';
 import { CategoriesPage } from './pages/categories/CategoriesPage.js';
 import { CategoryDetailsPage } from './pages/categories/CategoryDetailsPage.js';
-import { fetchCategory } from './utils/api.js';
+import { fetchCategory, fetchUser } from './utils/api.js';
 import { ErrorPage } from './pages/ErrorPage.js';
 import { AppError } from './components/errors/AppError.js';
 import { UsersPage } from './pages/users/UsersPage.js';
 import { UserDetailsPage } from './pages/users/UserDetailsPage.js';
+import { QueryClient } from '@tanstack/react-query';
+import { userDetailsLoader } from './utils/loaders.js';
+
+const queryClient = new QueryClient();
 
 const homeRoute = { path: '/', Component: HomePage };
 
@@ -59,7 +63,10 @@ const userRoutes = {
     {
       path: ':id',
       Component: UserDetailsPage,
-      // todo : loader
+      // Loader without TanStack Query. Note : use 'useLoaderData' Hook in the component.
+      // loader: async ({ params }: { params: { id: string } }) => fetchUser(params.id),
+      // Loader with TanStack Query.
+      loader: userDetailsLoader(queryClient),
       errorElement: <AppError />,
     },
   ],
