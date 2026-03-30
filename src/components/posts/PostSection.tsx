@@ -131,6 +131,9 @@ export function PostSection() {
 
   return (
     <section>
+      <h1>List of Posts with filters and pagination</h1>
+      <h2>With API & Hooks: useEffect, useReducer, useState</h2>
+
       <div className="filters">
         <PostFilters onFilterChange={(filterName) => dispatch({ type: 'filter', filterName })} />
       </div>

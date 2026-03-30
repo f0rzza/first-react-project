@@ -14,8 +14,6 @@ export const demoAccordions: Array<CustomAccordionType> = [
     content: () => {
       return (
         <>
-          <h2>Authentication</h2>
-          <h3>With API & Hooks: useEffect, useState</h3>
           <Login />
         </>
       );
@@ -27,8 +25,6 @@ export const demoAccordions: Array<CustomAccordionType> = [
     content: () => {
       return (
         <>
-          <h2>List of Posts with filters and pagination</h2>
-          <h3>With API & Hooks: useEffect, useReducer, useState</h3>
           <PostSection />
         </>
       );
@@ -39,8 +35,6 @@ export const demoAccordions: Array<CustomAccordionType> = [
     content: () => {
       return (
         <>
-          <h2>List of Alert components</h2>
-          <h3>With Hook: useState</h3>
           <AlertList />
         </>
       );
@@ -51,8 +45,6 @@ export const demoAccordions: Array<CustomAccordionType> = [
     content: () => {
       return (
         <>
-          <h2>List of SW characters</h2>
-          <h3>With API & Hooks: useState, useEffect</h3>
           <CharacterList />
         </>
       );
@@ -64,8 +56,6 @@ export const demoAccordions: Array<CustomAccordionType> = [
     content: () => {
       return (
         <>
-          <h2>List of SW characters with pagination</h2>
-          <h3>With API & Hooks: useEffect, useMemo, useReducer</h3>
           <CharacterListWithPagination />
         </>
       );
@@ -76,8 +66,6 @@ export const demoAccordions: Array<CustomAccordionType> = [
     content: () => {
       return (
         <>
-          <h2>Random SW character</h2>
-          <h3>With API & Hooks: useEffect, useReducer (TypeScript)</h3>
           <RandomCharacter />
         </>
       );
@@ -88,8 +76,6 @@ export const demoAccordions: Array<CustomAccordionType> = [
     content: () => {
       return (
         <>
-          <h2>Timers</h2>
-          <h3>With Hooks: useSate, useRef, useEffect (TypeScript)</h3>
           <Timer />
           <Timer />
         </>
@@ -101,8 +87,6 @@ export const demoAccordions: Array<CustomAccordionType> = [
     content: () => {
       return (
         <>
-          <h2>One counter, many buttons</h2>
-          <h3>With memo() & Hooks: useCallback, useState</h3>
           <OneButtonManyButtons />
         </>
       );

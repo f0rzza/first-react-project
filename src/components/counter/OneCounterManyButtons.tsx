@@ -30,7 +30,7 @@ export function OneButtonManyButtons() {
   // Notes :
   // Use memoised BasicButton component.
   // All this buttons are re-rendered too when parent is re-rendered.
-  // Except n°6 : memo() + useCallback() combination.
+  // Except n°7 : memo() + useCallback() combination.
 
   // Warning: MemoBasicButton component is re-rendered when there are dependencies.
   const cbHandleClick1 = useCallback(() => setCount(count + 1), [count]); // Re-rendered after count updates.
@@ -49,21 +49,27 @@ export function OneButtonManyButtons() {
     <MemoBasicButton key="7" label="Click on 7" onClick={cbHandleClick2} />,
   ];
 
+  console.log('OneCounterManyButtons - rendered');
   return (
-    <div>
-      <div>Counter: {count}</div>
+    <>
+      <h1>One counter, many buttons</h1>
+      <h2>With memo() & Hooks: useCallback, useState</h2>
+
       <div>
-        <p>With BasicButton component</p>
-        {buttons}
+        <div>Counter: {count}</div>
+        <div>
+          <p>With BasicButton component</p>
+          {buttons}
+        </div>
+        <div>
+          <p>
+            With memoised BasicButton component.
+            <br />
+            <i>The last two use 'useCallback' Hook.</i>
+          </p>
+          {memobButtons}
+        </div>
       </div>
-      <div>
-        <p>
-          With memoised BasicButton component.
-          <br />
-          <i>The last two use 'useCallback' Hook.</i>
-        </p>
-        {memobButtons}
-      </div>
-    </div>
+    </>
   );
 }

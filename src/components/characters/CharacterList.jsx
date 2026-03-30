@@ -58,6 +58,9 @@ export function CharacterList() {
 
   return (
     <>
+      <h1>List of SW characters</h1>
+      <h2>With API & Hooks: useState, useEffect</h2>
+
       <button onClick={handleClick} disabled={isLoading}>
         Get a SW character
       </button>
@@ -66,7 +69,6 @@ export function CharacterList() {
       {errorMessage && <p>{errorMessage}</p>}
 
       {/* Display list of characters */}
-      <p>List of characters :</p>
       {characters.length ? (
         <ul>
           {characters.map((c) => (
