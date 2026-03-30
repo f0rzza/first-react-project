@@ -99,6 +99,9 @@ export function RandomCharacter() {
 
   return (
     <>
+      <h1>Random SW character</h1>
+      <h2>With API & Hooks: useEffect, useReducer (TypeScript)</h2>
+
       <button onClick={handleClick} disabled={isLoading}>
         Get a random SW character
       </button>

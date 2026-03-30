@@ -1,111 +1,76 @@
-import AlertList from '../components/alerts/AlertList';
-import { Login } from '../components/auth/Login';
-import { CharacterList } from '../components/characters/CharacterList';
-import { CharacterListWithPagination } from '../components/characters/CharacterListWithPagination';
-import { RandomCharacter } from '../components/characters/RandomCharacter';
-import { OneButtonManyButtons } from '../components/counter/OneCounterManyButtons';
-import { PostSection } from '../components/posts/PostSection';
-import { Timer } from '../components/timers/Timer';
 import { CustomAccordionType } from '../types/common';
 
 export const demoAccordions: Array<CustomAccordionType> = [
   {
-    title: 'Authentication - With API & Hooks: useEffect, useState',
-    content: () => {
-      return (
-        <>
-          <h2>Authentication</h2>
-          <h3>With API & Hooks: useEffect, useState</h3>
-          <Login />
-        </>
-      );
-    },
+    title: 'Featured demos',
+    items: [
+      {
+        title: 'Authentication',
+        path: 'demos/auth',
+      },
+      {
+        title: 'List of Posts with filters and pagination',
+        path: 'posts',
+      },
+    ],
   },
   {
-    title:
-      'List of Posts with filters and pagination - With API & Hooks: useEffect, useReducer, useState',
-    content: () => {
-      return (
-        <>
-          <h2>List of Posts with filters and pagination</h2>
-          <h3>With API & Hooks: useEffect, useReducer, useState</h3>
-          <PostSection />
-        </>
-      );
-    },
+    title: 'Characters',
+    items: [
+      {
+        title: 'List of SW characters',
+        path: 'demos/Characters',
+      },
+      {
+        title: 'List of SW characters with pagination',
+        path: 'demos/Characters/list-with-pagination',
+      },
+      {
+        title: 'Random SW character',
+        path: 'demos/Characters/random',
+      },
+    ],
   },
   {
-    title: 'List of Alert components - With Hook: useState',
-    content: () => {
-      return (
-        <>
-          <h2>List of Alert components</h2>
-          <h3>With Hook: useState</h3>
-          <AlertList />
-        </>
-      );
-    },
+    title: 'Miscellaneous',
+    items: [
+      {
+        title: 'List of Alert components',
+        path: 'demos/misc',
+      },
+      {
+        title: 'Timers',
+        path: 'demos/misc/timers',
+      },
+      {
+        title: 'One counter, many buttons',
+        path: 'demos/misc/one-counter-many-buttons',
+      },
+    ],
   },
   {
-    title: 'List of SW characters - With API & Hooks: useState, useEffect',
-    content: () => {
-      return (
-        <>
-          <h2>List of SW characters</h2>
-          <h3>With API & Hooks: useState, useEffect</h3>
-          <CharacterList />
-        </>
-      );
-    },
-  },
-  {
-    title:
-      'List of SW characters with pagination - With API & Hooks: useEffect, useMemo, useReducer',
-    content: () => {
-      return (
-        <>
-          <h2>List of SW characters with pagination</h2>
-          <h3>With API & Hooks: useEffect, useMemo, useReducer</h3>
-          <CharacterListWithPagination />
-        </>
-      );
-    },
-  },
-  {
-    title: 'Random SW character - With API & Hooks: useEffect, useReducer (TypeScript)',
-    content: () => {
-      return (
-        <>
-          <h2>Random SW character</h2>
-          <h3>With API & Hooks: useEffect, useReducer (TypeScript)</h3>
-          <RandomCharacter />
-        </>
-      );
-    },
-  },
-  {
-    title: 'Timers - With Hooks: useSate, useRef, useEffect (TypeScript)',
-    content: () => {
-      return (
-        <>
-          <h2>Timers</h2>
-          <h3>With Hooks: useSate, useRef, useEffect (TypeScript)</h3>
-          <Timer />
-          <Timer />
-        </>
-      );
-    },
-  },
-  {
-    title: 'One counter, many buttons - With memo() & Hooks: useCallback, useState',
-    content: () => {
-      return (
-        <>
-          <h2>One counter, many buttons</h2>
-          <h3>With memo() & Hooks: useCallback, useState</h3>
-          <OneButtonManyButtons />
-        </>
-      );
-    },
+    title: 'Custom content',
+    content: (
+      <>
+        <p>
+          Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
+          laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi
+          architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit
+          aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione
+          voluptatem sequi nesciunt.
+        </p>
+        <p>
+          <strong>Neque porro quisquam est,</strong> qui dolorem ipsum quia dolor sit amet,
+          consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et
+          dolore magnam aliquam quaerat voluptatem.
+        </p>
+        <p>
+          <strong>Ut enim ad minima veniam,</strong> quis nostrum exercitationem ullam corporis
+          suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure
+          reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum
+          qui dolorem eum fugiat quo voluptas nulla pariatur?
+        </p>
+      </>
+    ),
   },
 ];

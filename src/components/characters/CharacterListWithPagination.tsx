@@ -96,28 +96,31 @@ export function CharacterListWithPagination() {
   );
 
   return (
-    <div>
-      <p>Liste</p>
+    <>
+      <h1>List of SW characters with pagination</h1>
+      <h2>With API & Hooks: useEffect, useMemo, useReducer</h2>
 
-      {isLoading && <p>Loading...</p>}
+      <div>
+        {isLoading && <p>Loading...</p>}
 
-      <p>{message}</p>
+        <p>{message}</p>
 
-      <p>Résultats : {characters.length} personnages</p>
+        <p>Résultats : {characters.length} personnages</p>
 
-      {filteredCharacters.length && (
-        <ul>
-          {filteredCharacters.map((p, index) => (
-            <CharacterCard key={index} name={p.name} />
-          ))}
-        </ul>
-      )}
+        {filteredCharacters.length && (
+          <ul>
+            {filteredCharacters.map((p, index) => (
+              <CharacterCard key={index} name={p.name} />
+            ))}
+          </ul>
+        )}
 
-      <Pagination
-        data={characters}
-        currentPage={page}
-        onPageChange={(page: number) => dispatch({ type: 'page', page })}
-      />
-    </div>
+        <Pagination
+          data={characters}
+          currentPage={page}
+          onPageChange={(page: number) => dispatch({ type: 'page', page })}
+        />
+      </div>
+    </>
   );
 }

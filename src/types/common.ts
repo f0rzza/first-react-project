@@ -1,8 +1,15 @@
 import { ReactNode } from 'react';
 
+// Accordion can contain a list of items or custom content (JSX).
 export type CustomAccordionType = {
   title: string;
-  content: () => ReactNode;
+  content?: ReactNode;
+  items?: Array<CustomAccordionItemType>;
+};
+
+export type CustomAccordionItemType = {
+  title: string;
+  path: string;
 };
 
 export type CharacterType = { name: string; gender: string };

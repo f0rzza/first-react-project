@@ -23,17 +23,22 @@ export function Login() {
   }, [isAuth]);
 
   return (
-    <div>
-      <p>Hello {user?.username}</p>
+    <>
+      <h1>Authentication</h1>
+      <h2>With API & Hooks: useEffect, useState</h2>
 
-      {!isAuth && (
-        <div>
-          <LoginButton onClick={() => setIsClicked(!isClicked)} />
-          {isClicked && <LoginForm />}
-        </div>
-      )}
+      <div>
+        <p>Hello {user?.username}</p>
 
-      {isAuth && <LogoutButton />}
-    </div>
+        {!isAuth && (
+          <div>
+            <LoginButton onClick={() => setIsClicked(!isClicked)} />
+            {isClicked && <LoginForm />}
+          </div>
+        )}
+
+        {isAuth && <LogoutButton />}
+      </div>
+    </>
   );
 }

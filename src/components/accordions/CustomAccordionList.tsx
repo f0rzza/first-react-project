@@ -1,6 +1,7 @@
 import { CustomAccordion } from './CustomAccordion';
 import { CustomAccordionType } from '../../types/common';
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 type Props = { data: Array<CustomAccordionType> };
 
@@ -27,7 +28,21 @@ export function CustomAccordionList({ data }: Props) {
           expanded={expanded} // Pass the state value. (false or the current expanded accordion ID)
           onChange={handleChange(index)} // Pass the current index. (accordion ID)
         >
-          {item.content()}
+          {item.content && <>{item.content}</>}
+
+          {/* TODO : create components for the accordion items list */}
+          {item.items && (
+            <ul>
+              {item.items.map((subitem, index) => (
+                <li>
+                  <div>{subitem.title}</div>
+                  <Link key={index} to={subitem.path}>
+                    See demo
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          )}
         </CustomAccordion>
       ))}
     </div>

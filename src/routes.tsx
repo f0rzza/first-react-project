@@ -10,15 +10,22 @@ import { ErrorPage } from './pages/ErrorPage.js';
 import { AppError } from './components/errors/AppError.js';
 import { UsersPage } from './pages/users/UsersPage.js';
 import { UserDetailsPage } from './pages/users/UserDetailsPage.js';
-import { QueryClient } from '@tanstack/react-query';
 import { userDetailsLoader } from './utils/loaders.js';
 import { queryClient } from './utils/queryClient.js';
+import AlertList from './components/alerts/AlertList.jsx';
+import { CharacterList } from './components/characters/CharacterList.jsx';
+import { DemoLayout } from './layouts/DemoLayout.js';
+import { CharacterListWithPagination } from './components/characters/CharacterListWithPagination.js';
+import { RandomCharacter } from './components/characters/RandomCharacter.js';
+import { TimerList } from './components/timers/TimerList.js';
+import { OneButtonManyButtons } from './components/counter/OneCounterManyButtons.js';
+import { Login } from './components/auth/Login.js';
 
 const homeRoute = { path: '/', Component: HomePage };
 
 // Post routes, with prefix.
 const postRoutes = {
-  path: '/posts',
+  path: 'posts',
   children: [
     {
       index: true,
@@ -32,7 +39,7 @@ const postRoutes = {
 
 // Category routes, with prefix.
 const categoryRoutes = {
-  path: '/categories',
+  path: 'categories',
   children: [
     {
       index: true,
@@ -53,7 +60,7 @@ const categoryRoutes = {
 
 // User routes, with prefix.
 const userRoutes = {
-  path: '/users',
+  path: 'users',
   children: [
     {
       index: true,
@@ -71,9 +78,42 @@ const userRoutes = {
   ],
 };
 
+// Demo routes, with prefix.
+const demoRoutes = {
+  path: 'demos',
+  Component: DemoLayout, // Same layout for all Demos pages.
+  errorElement: <AppError />,
+  children: [
+    {
+      index: true,
+      Component: CharacterListWithPagination, // Default demo
+    },
+    {
+      path: 'auth',
+      Component: Login,
+    },
+    {
+      path: 'characters',
+      children: [
+        { index: true, Component: CharacterList },
+        { path: 'list-with-pagination', Component: CharacterListWithPagination },
+        { path: 'random', Component: RandomCharacter },
+      ],
+    },
+    {
+      path: 'misc',
+      children: [
+        { index: true, Component: AlertList },
+        { path: 'timers', Component: TimerList },
+        { path: 'one-counter-many-buttons', Component: OneButtonManyButtons },
+      ],
+    },
+  ],
+};
+
 const commonRoutes = [
   // Errors. Keep this route if we want redirect on a specific page.
-  { path: '/error/:code', Component: ErrorPage },
+  { path: 'error/:code', Component: ErrorPage },
 ];
 
 export const router = createBrowserRouter([
@@ -81,5 +121,6 @@ export const router = createBrowserRouter([
   postRoutes,
   categoryRoutes,
   userRoutes,
+  demoRoutes,
   ...commonRoutes,
 ]);
