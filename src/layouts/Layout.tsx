@@ -8,7 +8,8 @@ export function Layout({ children }: { children: ReactNode }) {
   return (
     <>
       <Header />
-      <Content>{children}</Content>
+      {/* <Content>{children}</Content> */}
+      <main>{children}</main>
       <Footer />
     </>
   );
