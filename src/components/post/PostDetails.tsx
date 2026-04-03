@@ -5,6 +5,8 @@ export function PostDetails() {
   const [post, setPost] = useState<PostType>({
     title: '',
     content: '',
+    published: false,
+    authorId: '',
     createdAt: undefined,
     updatedAt: undefined,
   });
