@@ -22,3 +22,17 @@ export async function fetchUser(id: string): Promise<UserType> {
   const result = await response.json();
   return result;
 }
+
+// Check if current user is authenticated.
+export async function fetchMe(): Promise<boolean> {
+  const response = await fetch(`${import.meta.env.VITE_BASE_BLOG_API_URL}/auth/check`, {
+    credentials: 'include',
+  });
+
+  if (!response.ok) {
+    return false;
+  }
+
+  const data = await response.json();
+  return data.success;
+}
