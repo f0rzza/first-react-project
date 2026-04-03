@@ -58,7 +58,7 @@ const categoryRoutes = {
     {
       path: ':id/edit',
       Component: CategoryDetailsPage, // Note: use details page for test
-      loader: composeLoaders(authLoader, categoryPageLoader),
+      loader: composeLoaders(authLoader(queryClient), categoryPageLoader),
       errorElement: <AppError />,
     },
   ],

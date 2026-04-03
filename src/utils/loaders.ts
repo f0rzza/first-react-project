@@ -1,6 +1,6 @@
 import { QueryClient } from '@tanstack/react-query';
-import { userDetailsQuery } from './queries';
-import { LoaderFunction, LoaderFunctionArgs } from 'react-router-dom';
+import { fetchMeQuery, userDetailsQuery } from './queries';
+import { LoaderFunction, LoaderFunctionArgs, redirect } from 'react-router-dom';
 import { fetchCategory } from './api';
 
 // Doc: https://tkdodo.eu/blog/react-query-meets-react-router
@@ -26,11 +26,19 @@ export const categoryPageLoader = async ({ params }: LoaderFunctionArgs) => {
 };
 
 // Middleware-like to check authentication.
-export const authLoader = async () => {
-  console.log('authLoader'); // TODO
-  // Return nothing to continue with the next loader.
-  return null;
-};
+export const authLoader =
+  (queryClient: QueryClient): LoaderFunction =>
+  async () => {
+    // Get the defined query.
+    const query = fetchMeQuery();
+    // Get cached data from key or fetch them.
+    const isAuth =
+      queryClient.getQueryData(query.queryKey) ?? (await queryClient.fetchQuery(query));
+    // Redirect not authenticated user.
+    if (!isAuth) throw redirect('/');
+    // Return nothing to continue with the next loader.
+    return null;
+  };
 
 // Alternative solution to use 'loaders' as 'middlewares'.
 // Note: route middlewares are not fully supported by react-router-dom
