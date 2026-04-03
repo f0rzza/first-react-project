@@ -5,12 +5,11 @@ import { PostDetailsPage } from './pages/posts/PostDetailsPage.js';
 import { PostFormPage } from './pages/posts/PostFormPage.js';
 import { CategoriesPage } from './pages/categories/CategoriesPage.js';
 import { CategoryDetailsPage } from './pages/categories/CategoryDetailsPage.js';
-import { fetchCategory, fetchUser } from './utils/api.js';
 import { ErrorPage } from './pages/ErrorPage.js';
 import { AppError } from './components/errors/AppError.js';
 import { UsersPage } from './pages/users/UsersPage.js';
 import { UserDetailsPage } from './pages/users/UserDetailsPage.js';
-import { userDetailsLoader } from './utils/loaders.js';
+import { categoryPageLoader, userDetailsLoader } from './utils/loaders.js';
 import { queryClient } from './utils/queryClient.js';
 import AlertList from './components/alerts/AlertList.jsx';
 import { CharacterList } from './components/characters/CharacterList.jsx';
@@ -48,11 +47,7 @@ const categoryRoutes = {
     {
       path: ':id',
       Component: CategoryDetailsPage,
-      // Note : use destructuring to get the params. Then, use loader to fetch category data here.
-      loader: async ({ params }: { params: { id: string } }) => {
-        let category = await fetchCategory(params.id);
-        return category;
-      },
+      loader: categoryPageLoader,
       errorElement: <AppError />,
     },
   ],
