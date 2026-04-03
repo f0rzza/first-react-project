@@ -24,3 +24,22 @@ export const categoryPageLoader = async ({ params }: LoaderFunctionArgs) => {
   if (!id) throw new Error('Missing ID');
   return await fetchCategory(id); // TODO: use React Query.
 };
+
+// Middleware-like to check authentication.
+export const authLoader = async () => {
+  console.log('authLoader'); // TODO
+  // Return nothing to continue with the next loader.
+  return null;
+};
+
+// Alternative solution to use 'loaders' as 'middlewares'.
+// Note: route middlewares are not fully supported by react-router-dom
+export function composeLoaders(...loaders: Array<LoaderFunction>): LoaderFunction {
+  return async (args: LoaderFunctionArgs) => {
+    for (const loader of loaders) {
+      const result = await loader(args);
+      if (result) return result;
+    }
+    return null;
+  };
+}

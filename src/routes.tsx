@@ -9,7 +9,12 @@ import { ErrorPage } from './pages/ErrorPage.js';
 import { AppError } from './components/errors/AppError.js';
 import { UsersPage } from './pages/users/UsersPage.js';
 import { UserDetailsPage } from './pages/users/UserDetailsPage.js';
-import { categoryPageLoader, userDetailsLoader } from './utils/loaders.js';
+import {
+  authLoader,
+  categoryPageLoader,
+  composeLoaders,
+  userDetailsLoader,
+} from './utils/loaders.js';
 import { queryClient } from './utils/queryClient.js';
 import AlertList from './components/alerts/AlertList.jsx';
 import { CharacterList } from './components/characters/CharacterList.jsx';
@@ -48,6 +53,12 @@ const categoryRoutes = {
       path: ':id',
       Component: CategoryDetailsPage,
       loader: categoryPageLoader,
+      errorElement: <AppError />,
+    },
+    {
+      path: ':id/edit',
+      Component: CategoryDetailsPage, // Note: use details page for test
+      loader: composeLoaders(authLoader, categoryPageLoader),
       errorElement: <AppError />,
     },
   ],
